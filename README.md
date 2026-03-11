@@ -12,4 +12,5 @@ Simple Bash script to check basic system information.
 
 ## Run
 
+chmod +x check.sh
 ./check.sh
