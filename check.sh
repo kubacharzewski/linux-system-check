@@ -16,7 +16,16 @@ df -h
 
 echo ""
 echo "===Memory==="
-free -h
+
+MEM=$(free | awk '/Mem/ {printf("%.0f", $3/$2 * 100)}')
+
+echo "Memory usage: $MEM%"
+
+if [ "$MEM" -gt 80 ]; then
+   echo "WARNING: High memory usage"
+else
+   echo "OK: Memory usage normal"
+fi
 
 echo ""
 echo "===Nginx status==="
