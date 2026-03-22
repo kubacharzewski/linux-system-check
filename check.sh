@@ -12,14 +12,23 @@ uptime
 
 echo ""
 echo "===Disk usage==="
-df -h
+
+DISK=$(df / | awk 'NR==2 {print $5}' | sed 's/%//')
+
+echo "Disk usage:  ${DISK}%"
+
+if [ "$DISK" -gt 80 ]; then
+   echo "WARNING: High disk usage"
+else
+   echo "OK: Disk usage normal"
+fi
 
 echo ""
 echo "===Memory==="
 
 MEM=$(free | awk '/Mem/ {printf("%.0f", $3/$2 * 100)}')
 
-echo "Memory usage: $MEM%"
+echo "Memory usage: ${MEM}%"
 
 if [ "$MEM" -gt 80 ]; then
    echo "WARNING: High memory usage"
