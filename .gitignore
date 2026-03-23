@@ -1,3 +1,15 @@
-*.txt
+
+# sensitive files
+key.txt
 *.key
+*.pem
+
+# ssh
 .ssh/
+id_rsa*
+
+#logs
+*.log
+
+#temp
+*.temp
