@@ -4,11 +4,17 @@ echo "System check: $(date)"
 echo ""
 
 echo "===System info==="
-hostname
+echo "Hostname: $(hostname)"
+
+. /etc/os-release
+echo "OS: $PRETTY_NAME"
 
 echo ""
 echo "===Uptime==="
-uptime
+
+UPTIME=$(uptime -p)
+
+echo "Uptime: ${UPTIME#up}"
 
 echo ""
 echo "===Disk usage==="
@@ -39,13 +45,12 @@ fi
 echo ""
 echo "===CPU==="
 
-CPU=$(top -bn1 | awk '/Cpu\(s\)/ {print 100 - $8}')
-
-CPU_INT=${CPU%.*}
+CPU_IDLE=$(vmstat 1 2 | tail -1 | awk '{print $15}')
+CPU=$((100 - CPU_IDLE))
 
 echo "CPU usage: ${CPU}%"
 
-if [ "$CPU_INT" -gt 80 ]; then
+if [ "$CPU" -gt 80 ]; then
    echo "WARNING: High CPU usage"
 else
    echo "OK: CPU usage is normal"
