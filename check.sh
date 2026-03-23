@@ -37,5 +37,20 @@ else
 fi
 
 echo ""
+echo "===CPU==="
+
+CPU=$(top -bn1 | awk '/Cpu\(s\)/ {print 100 - $8}')
+
+CPU_INT=${CPU%.*}
+
+echo "CPU usage: ${CPU}%"
+
+if [ "$CPU_INT" -gt 80 ]; then
+   echo "WARNING: High CPU usage"
+else
+   echo "OK: CPU usage is normal"
+fi
+
+echo ""
 echo "===Nginx status==="
 systemctl is-active nginx
