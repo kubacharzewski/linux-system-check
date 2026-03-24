@@ -1,16 +1,28 @@
-# Linux System Check
+# Linux System Check Script
 
-Simple Bash script to check basic system information.
+Simple bash script to check basic system health.
 
 ## Features
 
-- hostname
-- uptime
-- disk usage
-- memory usage
-- nginx status
+- System info (hostname, OS)
+- Uptime
+- Disk usage
+- Memory usage
+- CPU usage
+- Nginx service status
 
-## Run
+## Requirements
+
+- Linux system
+- bash
+- vmstat
+- systemctl
+
+## Usage
 
 chmod +x check.sh
 ./check.sh
+
+## Author
+
+Jakub Charzewski
