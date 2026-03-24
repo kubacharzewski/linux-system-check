@@ -53,9 +53,14 @@ echo "CPU usage: ${CPU}%"
 if [ "$CPU" -gt 80 ]; then
    echo "WARNING: High CPU usage"
 else
-   echo "OK: CPU usage is normal"
+   echo "OK: CPU usage normal"
 fi
 
 echo ""
 echo "===Nginx status==="
-systemctl is-active nginx
+
+if systemctl is-active --quiet nginx; then
+   echo "OK: Nginx is running"
+else
+   echo "WARNING: Nginx is not running"
+fi
