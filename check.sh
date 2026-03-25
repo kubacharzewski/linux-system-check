@@ -1,6 +1,14 @@
 #!/bin/bash
 
 LOG_FILE="system_check.log"
+
+MAX_LINES=1000
+
+if [ -f "$LOG_FILE" ]; then
+   tail -n $MAX_LINES "$LOG_FILE" > "${LOG_FILE}.tmp"
+   mv "${LOG_FILE}.tmp" "$LOG_FILE"
+fi
+
 exec > >(tee -a $LOG_FILE) 2>&1
 
 GREEN="\e[32m"
