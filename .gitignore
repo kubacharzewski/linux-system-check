@@ -1,4 +1,3 @@
-
 # sensitive files
 key.txt
 *.key
@@ -8,8 +7,8 @@ key.txt
 .ssh/
 id_rsa*
 
-#logs
+# logs (includes system_check.log)
 *.log
 
-#temp
+# temp
 *.temp
