@@ -1,5 +1,5 @@
 # Linux System Check Script
-Simple bash script for monitoring basic system health.
+Simple Bash script for monitoring basic system health.
 
 ## Features
 - System information (hostname, OS)
